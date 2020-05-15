@@ -1,0 +1,25 @@
+﻿@model CinemaWatch.ViewModels.RandomMovieViewModel
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    //adds class="popular" attribute if customer list count is > 5
+    var className = Model.Customers.Count > 4 ? "popular" : null;
+}
+
+<h2 class="@className">@Model.Movie.Name</h2>
+
+@if (Model.Customers.Count <= 0)
+{
+    //<text>optional razor markup</text>
+    <p>Be the first to rent this movie!</p>
+}
+
+<ul>
+    @foreach(var customer in Model.Customers)
+    {
+        <li>@customer.Name</li>
+    }            
+</ul>
