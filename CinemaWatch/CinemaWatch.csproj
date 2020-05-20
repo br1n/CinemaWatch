@@ -201,9 +201,18 @@
     <Compile Include="Migrations\202005201955431_AddCustomerBirthdateProperty.designer.cs">
       <DependentUpon>202005201955431_AddCustomerBirthdateProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005202109027_AddedGenreTable.cs" />
+    <Compile Include="Migrations\202005202109027_AddedGenreTable.designer.cs">
+      <DependentUpon>202005202109027_AddedGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005202113271_AddGenreValues.cs" />
+    <Compile Include="Migrations\202005202113271_AddGenreValues.designer.cs">
+      <DependentUpon>202005202113271_AddGenreValues.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -329,6 +338,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005201955431_AddCustomerBirthdateProperty.resx">
       <DependentUpon>202005201955431_AddCustomerBirthdateProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005202109027_AddedGenreTable.resx">
+      <DependentUpon>202005202109027_AddedGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005202113271_AddGenreValues.resx">
+      <DependentUpon>202005202113271_AddGenreValues.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
