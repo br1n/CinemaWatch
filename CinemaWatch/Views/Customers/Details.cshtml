@@ -9,7 +9,7 @@
     <li>Membership Type: @Model.MembershipType.Name</li>
     @if (Model.Birthdate.HasValue)
     {
-        <li>@(Model.Birthdate?.ToString("MM/dd/yyyy"))</li>
+        <li>@Model.Birthdate.Value.ToLongDateString()</li>
     }
 </ul>
 
