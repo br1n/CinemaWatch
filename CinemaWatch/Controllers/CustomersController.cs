@@ -6,7 +6,7 @@ using CinemaWatch.Models;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using CinemaWatch.ViewModels;
 
 namespace CinemaWatch.Controllers
 {
@@ -44,5 +44,61 @@ namespace CinemaWatch.Controllers
             return View(customer);
         }
 
+
+        //Create View
+        public ActionResult New()
+        {
+            var membershipType = _context.MembershipTypes.ToList();
+            //create ViewModel that encapsulates the data of MembershipType
+            var viewModel = new CustomerFormViewModel
+            {
+                MembershipTypes = membershipType
+            };
+            return View("CustomerForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if(customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                //TryUpdateModel(customerInDb);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.MembershipType = customer.MembershipType;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if(customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+
+            };
+
+            return View("CustomerForm", viewModel);
+        }
     }
 }
