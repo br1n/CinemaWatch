@@ -17,7 +17,7 @@ namespace CinemaWatch.ViewModels
 
         [Display(Name = "Genre")]
         [Required]
-        public byte? GenreId { get; set; }
+        public int? GenreId { get; set; }
 
         [Display(Name = "Release Date")]
         [Required]

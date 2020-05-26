@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CinemaWatch.Dtos;
 using CinemaWatch.Models;
+using System.Data.Entity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +28,10 @@ namespace CinemaWatch.Controllers.API
         public IHttpActionResult GetCustomers()
         {
             //return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
-            var customerDtos = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDtos = _context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
 
             return Ok(customerDtos);
         }

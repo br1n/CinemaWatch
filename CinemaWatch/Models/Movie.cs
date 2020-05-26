@@ -18,7 +18,7 @@ namespace CinemaWatch.Models
 
         [Display(Name = "Genre")]
         [Required]
-        public byte GenreId { get; set; }
+        public int GenreId { get; set; }
 
         public DateTime DateAdded { get; set; }
 
