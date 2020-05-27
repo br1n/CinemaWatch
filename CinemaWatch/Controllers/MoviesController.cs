@@ -26,7 +26,12 @@ namespace CinemaWatch.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.CanManageMovies))
+            {
+                return View("List");
+            }
+            
+            return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)
@@ -41,6 +46,7 @@ namespace CinemaWatch.Controllers
             return View(movie);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genre = _context.Genres.ToList();
@@ -52,6 +58,7 @@ namespace CinemaWatch.Controllers
 
             return View("MovieForm", movieViewModel);
         }
+
 
         public ActionResult Edit(int id)
         {
@@ -72,6 +79,7 @@ namespace CinemaWatch.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "CanManageMovies")]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
