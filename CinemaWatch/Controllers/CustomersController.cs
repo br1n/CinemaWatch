@@ -7,9 +7,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CinemaWatch.ViewModels;
+using System.Web.Security;
 
 namespace CinemaWatch.Controllers
 {
+    [Authorize(Roles = RoleName.CanManageMovies)]
     public class CustomersController : Controller
     {
 
