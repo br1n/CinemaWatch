@@ -5,11 +5,15 @@
 }
 
 <h2>Active Customers</h2>
+<p>
+    @Html.ActionLink("Add Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+</p>
 
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Customer</th>
+            <th>Birthdate</th>
             <th>Membership Type</th>
             <th>Delete</th>
         </tr>
@@ -31,6 +35,13 @@
                         data: "name",
                         render: function (data, type, customer) {
                             return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>"
+                        }
+                    },
+                    {
+                        data: "birthdate",
+                        render: function (data) {
+                            var date = new Date(data).toLocaleDateString();
+                            return date;
                         }
                     },
                     {

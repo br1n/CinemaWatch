@@ -13,7 +13,9 @@
     <thead>
         <tr>
             <th>Movie</th>
+            <th>Number in Stock</th>
             <th>Genre</th>
+            <th>Release Date</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -44,7 +46,17 @@
                         }
                     },
                     {
+                       data: "numberInStock"
+                    },
+                    {
                         data: "genre.name"
+                    },
+                    {
+                        data: "releaseDate",
+                        render: function (data) {
+                            var date = new Date(data).toLocaleDateString();
+                            return date;
+                        }
                     },
                     {
                         data: "id",
