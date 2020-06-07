@@ -26,37 +26,24 @@ namespace CinemaWatch.Controllers
             _context.Dispose();
         }
 
-        // GET: Customers
+
         public ViewResult Index()
         {
             //var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
             return View();
         }
-
-        public ActionResult Details(int id)
-        {
-            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
-
-            if(customer == null)
-            {
-                HttpNotFound();
-            }
-
-            return View(customer);
-        }
-
 
         //Create View
         public ActionResult New()
         {
             var membershipType = _context.MembershipTypes.ToList();
-            //create ViewModel that encapsulates the data of MembershipType
+
             var viewModel = new CustomerFormViewModel
             {
                 Customer = new Customer(),
                 MembershipTypes = membershipType
             };
+
             return View("CustomerForm", viewModel);
         }
 
@@ -82,8 +69,6 @@ namespace CinemaWatch.Controllers
             else
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
-
-                //TryUpdateModel(customerInDb);
 
                 customerInDb.Name = customer.Name;
                 customerInDb.MembershipType = customer.MembershipType;

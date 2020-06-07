@@ -59,7 +59,6 @@ namespace CinemaWatch.Controllers
             return View("MovieForm", movieViewModel);
         }
 
-
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -109,31 +108,5 @@ namespace CinemaWatch.Controllers
 
             return RedirectToAction("Index", "Movies");
         }
-
-        //GET: Movies/Random
-        public ActionResult Random()
-        {
-            var movie = new Movie() { Name = "The Thing" };
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Elton" },
-                new Customer { Name = "John"}
-            };
-
-            var viewModel = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
-            };
-
-            return View(viewModel);
-        }
-
-        [Route("movies/released/{year:regex(\\d{2})}/{month:regex(\\d{2}):range(1, 12)}")]
-        public ActionResult ByReleaseDate(int year, int month)
-        {
-            return Content(year + "/" + month);
-        }
-
     }
 }

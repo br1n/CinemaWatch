@@ -24,6 +24,7 @@ namespace CinemaWatch.Models
         
         [Display(Name = "Date of Birth")]
         [Min18YearsIfAMember]
+        //[MinRequiredAge(18)]
         public DateTime? Birthdate { get; set; }
 
     }

@@ -24,8 +24,9 @@ namespace CinemaWatch.Controllers.API
             _context = new ApplicationDbContext();
         }
 
+        [HttpGet]
         //GET /api/customers
-        public IHttpActionResult GetCustomers()
+        public IHttpActionResult Customers()
         {
             //return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
             var customerDtos = _context.Customers
@@ -43,11 +44,11 @@ namespace CinemaWatch.Controllers.API
 
             if(customer == null)
             {
-                //RESTful convention to return standard not found http response
                 return NotFound();
             }
             return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
+
         //POST api/customers
         [HttpPost]
         public IHttpActionResult CreateCustomer(CustomerDto customerDto)
