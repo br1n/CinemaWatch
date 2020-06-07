@@ -9,6 +9,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
+using CinemaWatch.ViewModels;
+using System.Web.Helpers;
 
 namespace CinemaWatch.Controllers.API
 {
@@ -39,6 +41,21 @@ namespace CinemaWatch.Controllers.API
             }
 
             return Ok(Mapper.Map<Movie, MovieDto>(movie));
+        }
+
+        [HttpGet]
+        [Route("api/Movies/MoviesByGenre")]
+        public IHttpActionResult MoviesByGenre()
+        {
+            var moviesByGenre = _context.Movies
+                .Include(m => m.Genre)
+                .GroupBy(m => m.Genre.Name, m => m).Select(x => new GraphDataViewModel
+                {
+                    Name = x.Key,
+                    Count = x.Count()
+                }).ToList();
+
+            return Json(moviesByGenre);
         }
 
         [HttpPost]
