@@ -11,6 +11,8 @@ namespace CinemaWatch.ViewModels
 
         public int Count { get; set; }
 
+        public int ReleaseDate { get; set; }
+
         public string Color { get; set; }
     }
 }

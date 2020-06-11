@@ -11,6 +11,9 @@ using System.Web.Http;
 using System.Data.Entity;
 using CinemaWatch.ViewModels;
 using System.Web.Helpers;
+using System.Web.WebPages;
+using System.Security.Cryptography;
+using System.Web;
 
 namespace CinemaWatch.Controllers.API
 {
@@ -55,7 +58,23 @@ namespace CinemaWatch.Controllers.API
                     Count = x.Count()
                 }).ToList();
 
+            
+
             return Json(moviesByGenre);
+        }
+
+        [HttpGet]
+        [Route("api/Movies/MoviesByYear")]
+        public IHttpActionResult MovieGenreByYear()
+        {
+            var movies = _context.Movies
+                .GroupBy(x => x.ReleaseDate.Year, x=> x).Select(x => new GraphDataViewModel
+                {
+                    ReleaseDate = x.Key,
+                    Count = x.Count()
+                }).ToList();
+
+            return Json(movies);
         }
 
         [HttpPost]
