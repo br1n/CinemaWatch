@@ -470,7 +470,6 @@
     <Content Include="Scripts\DataTables\responsive.foundation.min.js" />
     <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
-    <Content Include="Scripts\Home\LineChart.js" />
     <Content Include="Scripts\Movies\List.js" />
     <Content Include="Scripts\Movies\ReadOnlyList.js" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
